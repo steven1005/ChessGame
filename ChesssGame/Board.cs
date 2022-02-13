@@ -17,7 +17,7 @@ namespace ChesssGame
         }
 
         public List<HalfBoardStatus> rectHalfBoard = new List<HalfBoardStatus>() {
-            new HalfBoardStatus{ rect = new Rectangle {Location = new Point(98, 55),   Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
+            new HalfBoardStatus{ rect = new Rectangle { Location = new Point(98, 55), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(178, 55), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(258, 55), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(338, 55), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
@@ -26,7 +26,7 @@ namespace ChesssGame
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(578, 55), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(658, 55), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
 
-            new HalfBoardStatus{ rect = new Rectangle { Location = new Point(98, 135),  Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
+            new HalfBoardStatus{ rect = new Rectangle { Location = new Point(98, 135), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(178, 135), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(258, 135), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(338, 135), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
@@ -35,7 +35,7 @@ namespace ChesssGame
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(578, 135), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(658, 135), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
         
-            new HalfBoardStatus{ rect = new Rectangle { Location = new Point(98, 218),  Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
+            new HalfBoardStatus{ rect = new Rectangle { Location = new Point(98, 218), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(178, 218), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(258, 218), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(338, 218), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
@@ -44,7 +44,7 @@ namespace ChesssGame
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(578, 218), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(658, 218), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
         
-            new HalfBoardStatus{ rect = new Rectangle { Location = new Point(98, 300),  Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
+            new HalfBoardStatus{ rect = new Rectangle { Location = new Point(98, 300), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(178, 300), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(258, 300), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},
             new HalfBoardStatus{ rect = new Rectangle { Location = new Point(338, 300), Size = Piece.sPieceIcon}, iPlayer = -1, iPieceIdx = -1},

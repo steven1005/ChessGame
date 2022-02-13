@@ -107,6 +107,34 @@ namespace ChesssGame
             StartGame(Global.iBordType);
         }
 
+        public void GenerateNumber1()  
+        {
+            //用於保存返回的結果   
+            List<int> result = new List<int>(32);  
+            Random random = new Random();  
+            int temp = 0;  
+            //如果返回的結果集合中實際的元素個數小於6個   
+            while (result.Count < 32)  
+            {  
+                //在[1,34)區間任意取一個隨機整數   
+                temp = random.Next(0, 32);  
+                if (!result.Contains(temp))  
+                {  
+                    //如果在結果集合中不存在這個數，則添加這個數   
+                    result.Add(temp);  
+                }  
+            }  
+            //result.Sort();//對返回結果進行排序   
+            //return result; 
+
+            for (int i = 0; i < 32; i++)    
+            {
+                Board.HalfBoardStatus bi = Global.board.rectHalfBoard[i];
+                bi.iPieceIdx = result[i];
+                Console.WriteLine(result[i]);
+            }
+        }
+
         // 暗棋 亂數放棋子
         public void RandomPiece()
         {
@@ -137,15 +165,15 @@ namespace ChesssGame
             {
                 // 亂數放棋子
                 RandomPiece();
+                //GenerateNumber1();
 
                 for (int i = 0; i < 16; i++)
                 {
-                    //piece.PlayOne[i].pic.Location = board.rectHalfBoard[i].rect.Location;
-                    //this.MainPanel.Controls.Add(piece.PlayOne[i].pic);
+                    //Global.piece.PlayOne[i].pic.Location = Global.board.rectHalfBoard[i].rect.Location;
+                    //this.MainPanel.Controls.Add(Global.piece.PlayOne[i].pic);
                     Board.HalfBoardStatus iboard = Global.board.rectHalfBoard[i];
                     Global.piece.PlayOne[i].pic.Location = Global.board.rectHalfBoard[iboard.iPieceIdx].rect.Location;
                     Global.board.rectHalfBoard[iboard.iPieceIdx].iPlayer = 0;
-                    Global.board.rectHalfBoard[iboard.iPieceIdx].iPieceIdx = i;
                     // 改蓋牌
                     Global.piece.PlayOne[i].pic.Visible = false;
                     this.MainPanel.Controls.Add(Global.piece.PlayOne[i].pic);
@@ -153,12 +181,11 @@ namespace ChesssGame
 
                 for (int i = 16; i < 32; i++)
                 {
-                    //piece.PlayTwo[i - 16].pic.Location = board.rectHalfBoard[i].rect.Location;
-                    //this.MainPanel.Controls.Add(piece.PlayTwo[i - 16].pic);
+                    //Global.piece.PlayTwo[i - 16].pic.Location = Global.board.rectHalfBoard[i].rect.Location;
+                    //this.MainPanel.Controls.Add(Global.piece.PlayTwo[i - 16].pic);
                     Board.HalfBoardStatus iboard = Global.board.rectHalfBoard[i];
                     Global.piece.PlayTwo[i - 16].pic.Location = Global.board.rectHalfBoard[iboard.iPieceIdx].rect.Location;
                     Global.board.rectHalfBoard[iboard.iPieceIdx].iPlayer = 1;
-                    Global.board.rectHalfBoard[iboard.iPieceIdx].iPieceIdx = i - 16;
                     // 改蓋牌
                     Global.piece.PlayTwo[i - 16].pic.Visible = false;
                     this.MainPanel.Controls.Add(Global.piece.PlayTwo[i - 16].pic);

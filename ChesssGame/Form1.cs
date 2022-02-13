@@ -36,7 +36,7 @@ namespace ChesssGame
         public static void ChangePieceRadioValue()
         {
             if (form != null)
-                form.ChangePieceRadio();
+                form.ChangePiecePlayer();
         }
 
         public static void ChangeStatusMessage(string sMsg)
@@ -46,13 +46,13 @@ namespace ChesssGame
         }
 
         // Accessing Form's Controls from another class
-        private void ChangePieceRadio()
+        private void ChangePiecePlayer()
         {
             // If this returns true, it means it was called from an external thread.
             if (InvokeRequired)
             {
                 // Create a delegate of this method and let the form run it.
-                this.Invoke(new ChangePieceDelegate(ChangePieceRadio), new object[] { });
+                this.Invoke(new ChangePieceDelegate(ChangePiecePlayer), new object[] { });
                 return; // Important
             }
             // Set textBox
@@ -87,7 +87,7 @@ namespace ChesssGame
                 iWidth = Properties.Resources.FullBoard.Width;
                 iHeight = Properties.Resources.FullBoard.Height - 60;
             }
-            this.Width = iWidth - 50;
+            this.Width = iWidth + 150;
             this.Height = iHeight + 80;
             this.MainPanel.Width = iWidth;
             this.MainPanel.Height = iHeight;
@@ -130,7 +130,7 @@ namespace ChesssGame
             for (int i = 0; i < 32; i++)    
             {
                 Board.HalfBoardStatus bi = Global.board.rectHalfBoard[i];
-                bi.iPieceIdx = result[i];
+                bi.iBoardIdx = result[i];
                 Console.WriteLine(result[i]);
             }
         }
@@ -143,16 +143,16 @@ namespace ChesssGame
             {
                 //board.rectHalfBoard[i].iPieceIdx = (int)(rnd.Next(1, 32));   //亂數產生，亂數產生的範圍是1~9
                 Board.HalfBoardStatus bi = Global.board.rectHalfBoard[i];
-                bi.iPieceIdx = (int)(rnd.Next(0, 32));
+                bi.iBoardIdx = (int)(rnd.Next(0, 32));
                 //Console.WriteLine(bi.iPieceIdx);
                 for (int j = 0; j < i; j++)
                 {
-                    while (Global.board.rectHalfBoard[j].iPieceIdx == Global.board.rectHalfBoard[i].iPieceIdx)    //檢查是否與前面產生的數值發生重複，如果有就重新產生
+                    while (Global.board.rectHalfBoard[j].iBoardIdx == Global.board.rectHalfBoard[i].iBoardIdx)    //檢查是否與前面產生的數值發生重複，如果有就重新產生
                     {
                         j = 0;  //如有重複，將變數j設為0，再次檢查 (因為還是有重複的可能)
                         //board.rectHalfBoard[i].iPieceIdx = (int)(rnd.Next(1, 32));   //亂數產生，亂數產生的範圍是1~9
                         Board.HalfBoardStatus bj = Global.board.rectHalfBoard[i];
-                        bj.iPieceIdx = (int)(rnd.Next(0, 32));
+                        bj.iBoardIdx = (int)(rnd.Next(0, 32));
                     }
                 } // end for j
                 //Console.WriteLine(bi.iPieceIdx);
@@ -172,8 +172,10 @@ namespace ChesssGame
                     //Global.piece.PlayOne[i].pic.Location = Global.board.rectHalfBoard[i].rect.Location;
                     //this.MainPanel.Controls.Add(Global.piece.PlayOne[i].pic);
                     Board.HalfBoardStatus iboard = Global.board.rectHalfBoard[i];
-                    Global.piece.PlayOne[i].pic.Location = Global.board.rectHalfBoard[iboard.iPieceIdx].rect.Location;
-                    Global.board.rectHalfBoard[iboard.iPieceIdx].iPlayer = 0;
+                    Global.piece.PlayOne[i].pic.Location = Global.board.rectHalfBoard[iboard.iBoardIdx].rect.Location;
+                    Global.piece.PlayOne[i].iBoardIdx = iboard.iBoardIdx;
+                    Global.board.rectHalfBoard[iboard.iBoardIdx].iPlayer = 0;
+                    Global.board.rectHalfBoard[iboard.iBoardIdx].iPieceIdx = i;
                     // 改蓋牌
                     Global.piece.PlayOne[i].pic.Visible = false;
                     this.MainPanel.Controls.Add(Global.piece.PlayOne[i].pic);
@@ -184,8 +186,10 @@ namespace ChesssGame
                     //Global.piece.PlayTwo[i - 16].pic.Location = Global.board.rectHalfBoard[i].rect.Location;
                     //this.MainPanel.Controls.Add(Global.piece.PlayTwo[i - 16].pic);
                     Board.HalfBoardStatus iboard = Global.board.rectHalfBoard[i];
-                    Global.piece.PlayTwo[i - 16].pic.Location = Global.board.rectHalfBoard[iboard.iPieceIdx].rect.Location;
-                    Global.board.rectHalfBoard[iboard.iPieceIdx].iPlayer = 1;
+                    Global.piece.PlayTwo[i - 16].pic.Location = Global.board.rectHalfBoard[iboard.iBoardIdx].rect.Location;
+                    Global.piece.PlayTwo[i - 16].iBoardIdx = iboard.iBoardIdx;
+                    Global.board.rectHalfBoard[iboard.iBoardIdx].iPlayer = 1;
+                    Global.board.rectHalfBoard[iboard.iBoardIdx].iPieceIdx = i - 16;
                     // 改蓋牌
                     Global.piece.PlayTwo[i - 16].pic.Visible = false;
                     this.MainPanel.Controls.Add(Global.piece.PlayTwo[i - 16].pic);

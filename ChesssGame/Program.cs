@@ -17,8 +17,8 @@ namespace ChesssGame
         public static Board board = new Board();
         public static Piece piece = new Piece();
 
-        public static bool bPieceStep = false; // true     紅 PlayOne rdoRed
-        // false    黑 PlayTow rdoBlack
+        public static bool bPieceStep = false; // true     紅 PlayOne
+                                               // false    黑 PlayTwo
 
         public static int iBordType = 0; // 0 半板 1 全板
         public static void TurnPlayPiece() // 換手

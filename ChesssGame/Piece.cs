@@ -14,12 +14,11 @@ namespace ChesssGame
         {
             Dark = 0,
             None,
-            Selected,
-            aLive
+            Selected
         }
         
         public bool bFight = false;
-        picPiece[] FightSeletedPiece = new picPiece[2]; //  0 第一個選擇 1 第一個選擇
+        picPiece[] FightSeletedPiece = new picPiece[2]; //  0 第一個選擇 1 第二個選擇
 
         public static Size sPieceIcon = new Size(74, 76);
         public class picPiece
@@ -29,6 +28,10 @@ namespace ChesssGame
                                  // 帥 仕 相 車 馬 炮 兵
             public int iLevel; // 0 將 1 士 1 士 2 象 2 象 3 車 3 車 4 馬 4 馬 5 炮 5 炮 6 卒 6 卒 6 卒 6 卒 6 卒 
                                // 0 帥 1 仕 1 仕 2 相 2 相 3 車 3 車 4 馬 4 馬 5 炮 5 炮 6 兵 6 兵 6 兵 6 兵 6 兵
+            public int iPlayer; // -1 None, 0 PlayOne, 1 PlayTwo
+            public int iPieceIdx; // -1, 0 - 15
+            public int iBoardIdx; // -1, 0 - 31
+            public bool bAlive = true; // false Dead, true Alive
             public SelectedType ePieceSatus;
         }
 
@@ -39,42 +42,42 @@ namespace ChesssGame
 
         // 紅
         public List <picPiece> PlayOne = new List<picPiece> {
-            new picPiece { pic = new PictureBox(), sName = "帥", iLevel = 0, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "仕", iLevel = 1, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "仕", iLevel = 1, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "相", iLevel = 2, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "相", iLevel = 2, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "車", iLevel = 3, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "車", iLevel = 3, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "馬", iLevel = 4, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "馬", iLevel = 4, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "炮", iLevel = 5, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "炮", iLevel = 5, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "兵", iLevel = 6, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "兵", iLevel = 6, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "兵", iLevel = 6, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "兵", iLevel = 6, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "兵", iLevel = 6, ePieceSatus = SelectedType.Dark}
+            new picPiece { pic = new PictureBox(), sName = "帥", iLevel = 0, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 0}, 
+            new picPiece { pic = new PictureBox(), sName = "仕1", iLevel = 1, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 1},
+            new picPiece { pic = new PictureBox(), sName = "仕2", iLevel = 1, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 2}, 
+            new picPiece { pic = new PictureBox(), sName = "相1", iLevel = 2, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 3},
+            new picPiece { pic = new PictureBox(), sName = "相2", iLevel = 2, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 4}, 
+            new picPiece { pic = new PictureBox(), sName = "俥1", iLevel = 3, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 5},
+            new picPiece { pic = new PictureBox(), sName = "俥2", iLevel = 3, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 6}, 
+            new picPiece { pic = new PictureBox(), sName = "傌1", iLevel = 4, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 7},
+            new picPiece { pic = new PictureBox(), sName = "傌2", iLevel = 4, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 8}, 
+            new picPiece { pic = new PictureBox(), sName = "炮1", iLevel = 5, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 9},
+            new picPiece { pic = new PictureBox(), sName = "炮2", iLevel = 5, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 10}, 
+            new picPiece { pic = new PictureBox(), sName = "兵1", iLevel = 6, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 11}, 
+            new picPiece { pic = new PictureBox(), sName = "兵2", iLevel = 6, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 12}, 
+            new picPiece { pic = new PictureBox(), sName = "兵3", iLevel = 6, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 13}, 
+            new picPiece { pic = new PictureBox(), sName = "兵4", iLevel = 6, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 14}, 
+            new picPiece { pic = new PictureBox(), sName = "兵5", iLevel = 6, iPlayer = 0, ePieceSatus = SelectedType.Dark, iPieceIdx = 15}
             };
         
         // 黑
         public List<picPiece> PlayTwo = new List<picPiece> {
-            new picPiece { pic = new PictureBox(), sName = "將", iLevel = 0, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "士", iLevel = 1, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "士", iLevel = 1, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "象", iLevel = 2, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "象", iLevel = 2, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "車", iLevel = 3, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "車", iLevel = 3, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "馬", iLevel = 4, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "馬", iLevel = 4, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "炮", iLevel = 5, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "炮", iLevel = 5, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "卒", iLevel = 6, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "卒", iLevel = 6, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "卒", iLevel = 6, ePieceSatus = SelectedType.Dark},
-            new picPiece { pic = new PictureBox(), sName = "卒", iLevel = 6, ePieceSatus = SelectedType.Dark}, 
-            new picPiece { pic = new PictureBox(), sName = "卒", iLevel = 6, ePieceSatus = SelectedType.Dark}
+            new picPiece { pic = new PictureBox(), sName = "將", iLevel = 0, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 0}, 
+            new picPiece { pic = new PictureBox(), sName = "士1", iLevel = 1, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 1},
+            new picPiece { pic = new PictureBox(), sName = "士2", iLevel = 1, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 2}, 
+            new picPiece { pic = new PictureBox(), sName = "象1", iLevel = 2, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 3},
+            new picPiece { pic = new PictureBox(), sName = "象2", iLevel = 2, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 4}, 
+            new picPiece { pic = new PictureBox(), sName = "車1", iLevel = 3, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 5},
+            new picPiece { pic = new PictureBox(), sName = "車2", iLevel = 3, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 6}, 
+            new picPiece { pic = new PictureBox(), sName = "馬1", iLevel = 4, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 7},
+            new picPiece { pic = new PictureBox(), sName = "馬2", iLevel = 4, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 8}, 
+            new picPiece { pic = new PictureBox(), sName = "包1", iLevel = 5, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 9},
+            new picPiece { pic = new PictureBox(), sName = "包2", iLevel = 5, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 10}, 
+            new picPiece { pic = new PictureBox(), sName = "卒1", iLevel = 6, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 11}, 
+            new picPiece { pic = new PictureBox(), sName = "卒2", iLevel = 6, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 12}, 
+            new picPiece { pic = new PictureBox(), sName = "卒3", iLevel = 6, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 13},
+            new picPiece { pic = new PictureBox(), sName = "卒4", iLevel = 6, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 14}, 
+            new picPiece { pic = new PictureBox(), sName = "卒5", iLevel = 6, iPlayer = 1, ePieceSatus = SelectedType.Dark, iPieceIdx = 15}
             };
 
         public void InitPictureBox()
@@ -106,7 +109,7 @@ namespace ChesssGame
             if (Global.iBordType == (int)GameBoard.HalfBoard)
             {
                 //Console.WriteLine(Pic.Tag);
-                if ((int)Pic.Tag < 16)
+                if ((int)Pic.Tag < 16 && (Global.bPieceStep || bFight == true))
                 {
                     for (int i = 0; i < 16; i++)
                     {
@@ -134,6 +137,12 @@ namespace ChesssGame
                                 {
                                     FightSeletedPiece[0] = PlayOne[i];
                                     FightSeletedPiece[1] = null;
+                                    Console.WriteLine("Fight PlayOne 0 " + PlayOne[i].sName);
+                                }
+                                else
+                                {
+                                    FightSeletedPiece[1] = PlayOne[i];
+                                    Console.WriteLine("Fight PlayOne 1 " + PlayOne[i].sName);
                                 }
                                 bFight = true;
                                 Global.MsgStatusUpdate("選取 " + PlayOne[i].sName);
@@ -143,7 +152,8 @@ namespace ChesssGame
                         }
                     }
                 } // end PlayOne
-                if ((int)Pic.Tag > 15)
+
+                if ((int)Pic.Tag > 15 && (!Global.bPieceStep || bFight == true))
                 {
                     for (int i = 0; i < 16; i++)
                     {
@@ -170,6 +180,12 @@ namespace ChesssGame
                                 {
                                     FightSeletedPiece[0] = PlayTwo[i];
                                     FightSeletedPiece[1] = null;
+                                    Console.WriteLine("Fight PlayTwo 0 " + PlayTwo[i].sName);
+                                }
+                                else
+                                {
+                                    FightSeletedPiece[1] = PlayTwo[i];
+                                    Console.WriteLine("Fight PlayTwo 1 " + PlayTwo[i].sName);
                                 }
                                 bFight = true;
                                 Global.MsgStatusUpdate("選取 " + PlayTwo[i].sName);
@@ -178,7 +194,70 @@ namespace ChesssGame
                         }
                     }
                 } // end PlayTwo
+
+                if (bFight && 
+                    FightSeletedPiece[0] != null && FightSeletedPiece[1] != null &&
+                    FightSeletedPiece[0].iPlayer != FightSeletedPiece[1].iPlayer)
+                {
+                    Console.WriteLine(FightSeletedPiece[0].sName);
+                    Console.WriteLine(FightSeletedPiece[1].sName);
+
+                    // 吃子
+                    if (FightSeletedPiece[0].iLevel <= FightSeletedPiece[1].iLevel ||
+                        FightSeletedPiece[0].iLevel - FightSeletedPiece[1].iLevel == 6) // 卒吃帥，兵吃將
+                    {
+                        if(FightSeletedPiece[1].iPlayer == 0)
+                        {
+                            int iNewIdx = FightSeletedPiece[1].iPieceIdx;
+                            int iNewBoardIdx0 = FightSeletedPiece[0].iBoardIdx;
+
+                            int iIdx = FightSeletedPiece[0].iPieceIdx;
+                            int iNewBoardIdx1 = FightSeletedPiece[1].iBoardIdx;
+
+                            PlayOne[iNewIdx].bAlive = false; // Dead
+                            PlayOne[iNewIdx].pic.Location = new Point(0, 55);
+                            Console.WriteLine(PlayOne[iNewIdx].sName + " Dead");
+
+                            // 將版面贏棋位置變更為-1，才不會畫上黑格
+                            Global.board.rectHalfBoard[iNewBoardIdx0].iPlayer = -1;
+                            Global.board.rectHalfBoard[iNewBoardIdx1].iPlayer = -1;
+
+                            // 將贏棋的位置移到輪棋位置
+                            PlayTwo[iIdx].pic.Location = PlayOne[iNewIdx].pic.Location;
+                            PlayOne[iIdx].ePieceSatus = SelectedType.None;
+                        }
+                        if (FightSeletedPiece[1].iPlayer == 1)
+                        {
+                            int iNewIdx = FightSeletedPiece[1].iPieceIdx;
+                            int iNewBoardIdx0 = FightSeletedPiece[0].iBoardIdx;
+
+                            int iIdx = FightSeletedPiece[0].iPieceIdx;
+                            int iNewBoardIdx1 = FightSeletedPiece[1].iBoardIdx;
+
+                            PlayTwo[iNewIdx].bAlive = false; // Dead
+                            PlayTwo[iNewIdx].pic.Location = new Point(770, 55);
+                            Console.WriteLine(PlayTwo[iNewIdx].sName + " Dead");
+
+                            // 將版面贏棋位置變更為-1，才不會畫上黑格
+                            Global.board.rectHalfBoard[iNewBoardIdx0].iPlayer = -1;
+                            Global.board.rectHalfBoard[iNewBoardIdx1].iPlayer = -1;
+
+                            // 將贏棋移到輪棋
+                            PlayOne[iIdx].pic.Location = PlayTwo[iNewIdx].pic.Location;
+                            PlayTwo[iIdx].ePieceSatus = SelectedType.None;
+                        }
+
+                        // 換棋
+                        Global.TurnPlayPiece();
+                    }
+
+                    bFight = false;
+                    FightSeletedPiece[0] = null;
+                    FightSeletedPiece[1] = null;
+                }
             } // end HalfBoard
+
+
         }
 
         // 切割大圖到PlayOne PlayTwo

@@ -1,0 +1,9 @@
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\obj\Debug\ChesssGame.Form1.resources
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\obj\Debug\ChesssGame.Properties.Resources.resources
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\obj\Debug\ChesssGame.csproj.GenerateResource.Cache
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\bin\Debug\ChesssGame.exe.config
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\bin\Debug\ChesssGame.exe
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\bin\Debug\ChesssGame.pdb
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\obj\Debug\ChesssGame.exe
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\obj\Debug\ChesssGame.pdb
+H:\CS_WORK_SPACE\ChessGame\ChesssGame\ChesssGame\obj\Debug\ChesssGame.csprojResolveAssemblyReference.cache
